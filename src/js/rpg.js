@@ -1,5 +1,5 @@
 //Change AND check current stats//
-export const storeState = (initialState) => {
+const storeState = (initialState) => {
   let currentState = initialState;
   return (stateChangeFunction = state => state) => {
     const newState = stateChangeFunction(currentState);
@@ -9,7 +9,7 @@ export const storeState = (initialState) => {
 };
 
 //Function factory, functions that affect character attributes
-export const changeState = (prop) => {
+const changeState = (prop) => {
   return (value) => {
     return (math) => {
       return (state) => ({
@@ -31,15 +31,39 @@ const cpUp = changeState("cp")(2)(mult);
 const mpUp = changeState("mp")(2)(mult);
 
 
-export const knight = storeState({type:"knight", health:10, cp:10, mp:10, level:1});
+const knight = storeState({type:"knight", health:10, cp:10, mp:10, level:1});
 
-export const levelUpThatKnight = function(test){
+const levelUpThatKnight = function(test){
   const newHealth = healthUp(test);
   const newCp = cpUp(newHealth);
   const newMp = mpUp(newCp);
   const levelUp= levelAdd(newMp);
   return levelUp;
 };
+
+const canAttack = (obj) => ({
+  attack:(target) => {
+    target(takesDamage)
+    return `The ${obj.type} attacks the ${target} with their sword.`
+  }
+});
+
+const canSpecialAttack = (obj) => ({
+  sAttack:(target) => {
+    return `The ${obj.type} attacks the ${target} with magic.`
+  }
+});
+
+const attackingCharacter = (obj) => {
+  let character = {
+    obj
+  }
+  return {...obj, ...canAttack(obj), ...canSpecialAttack(obj) };
+};
+knight(attackingCharacter);
+console.log(knight());
+console.log(knight().attack("monster"));
+console.log(knight().sAttack("monster"));
 
 /*
 function thing(...stuff) {

@@ -2,8 +2,8 @@ Theme: Classic Fantasy (Wizards, Knights, etc)
 
 To Do: Make monster/enemy, create combat system (option: click makes a comparison of enemy stats to user stats and generates an outcome)
 
-Create a character creating function factory. //changeState fxn
-Create storeState function.
+✅ Create a character creating function factory. //changeState fxn
+✅ Create storeState function.
 Create 2+ character types via composition.
 
 Attributes/Stats:
