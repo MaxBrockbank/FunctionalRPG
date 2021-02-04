@@ -1,9 +1,10 @@
 Theme: Classic Fantasy (Wizards, Knights, etc)
 
+To Do: Make monster/enemy, create combat system (option: click makes a comparison of enemy stats to user stats and generates an outcome)
+
 Create a character creating function factory. //changeState fxn
 Create storeState function.
 Create 2+ character types via composition.
-
 
 Attributes/Stats:
 Level / Health / Combat Power (CP) / Magic Power (MP)
@@ -13,7 +14,6 @@ LevelUp: Add 1 to Level, modify Health, CP, and MP by 1.2
 
 //storeState == plant, its going to initialize the values, const initalState = storeState(initialValues)
 //changeState can have different "jobs" can changeNumberState, changeStringState
-
 
 In Intermediate JavaScript, you had the opportunity to build your own RPG using object-oriented techniques. Try building another RPG - this time using functional techniques such as composition. You may also choose to refactor an RPG you've already started working on. Refactoring object-oriented code to functional code can be a great way to improve your skills.
 

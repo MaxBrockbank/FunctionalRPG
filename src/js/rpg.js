@@ -1,4 +1,3 @@
-
 //Change AND check current stats//
 export const storeState = (initialState) => {
   let currentState = initialState;
@@ -32,10 +31,7 @@ const cpUp = changeState("cp")(2)(mult);
 const mpUp = changeState("mp")(2)(mult);
 
 
-
-
-export const knight = storeState({type:"knight", health:10, cp:10, mp:0, level:1});
-// const knightStats = knight();
+export const knight = storeState({type:"knight", health:10, cp:10, mp:10, level:1});
 
 export const levelUpThatKnight = function(test){
   const newHealth = healthUp(test);
@@ -44,14 +40,6 @@ export const levelUpThatKnight = function(test){
   const levelUp= levelAdd(newMp);
   return levelUp;
 };
-// console.log(healthUp(knight));
-// console.log(levelUpThatKnight(knightStats));
-// console.log(knight(levelUpThatKnight));
-// console.log(knight(levelUpThatKnight));
-// console.log(knight(levelUpThatKnight));
-// console.log(knight(levelUpThatKnight));
-// console.log(knight(levelUpThatKnight));
-// console.log(knight());
 
 /*
 function thing(...stuff) {
