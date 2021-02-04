@@ -1,5 +1,11 @@
 #scene1,
-#scene1,
+#scene2,
 #scene3 {
   display: none;
+}
+/* #nakedWiz {
+  float: right;
+} */
+#deadNakedWiz {
+  transform: scaleY(-1);
 }

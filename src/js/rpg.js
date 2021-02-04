@@ -1,5 +1,5 @@
 //Change AND check current stats//
-const storeState = (initialState) => {
+export const storeState = (initialState) => {
   let currentState = initialState;
   return (stateChangeFunction = state => state) => {
     const newState = stateChangeFunction(currentState);
@@ -9,7 +9,7 @@ const storeState = (initialState) => {
 };
 
 //Function factory, functions that affect character attributes
-const changeState = (prop) => {
+export const changeState = (prop) => {
   return (value) => {
     return (math) => {
       return (state) => ({
@@ -21,7 +21,7 @@ const changeState = (prop) => {
 };
 
 const add = (a, b) => a + b;
-// const sub = (a, b) => a - b;
+const sub = (a, b) => a - b;
 const mult = (a, b) => a * b;
 // const div = (a, b) => a / b;
 
@@ -29,11 +29,14 @@ const healthUp = changeState("health")(2)(mult);
 const levelAdd = changeState("level")(1)(add);
 const cpUp = changeState("cp")(2)(mult);
 const mpUp = changeState("mp")(2)(mult);
+// const takesMagicDamage = changeState("health")(obj.mp)(sub);
+// const takesPhysDamage = changeState("health")(obj.mp)(sub);
 
 
-const knight = storeState({type:"knight", health:10, cp:10, mp:10, level:1});
+export const knight = storeState({type:"knightWizard", health:10, cp:10, mp:10, level:1});
+export const monster = storeState({type:"monsterWizard", health:5, cp:5, mp:5, level:1});
 
-const levelUpThatKnight = function(test){
+export const levelUpThatWizard = function(test){
   const newHealth = healthUp(test);
   const newCp = cpUp(newHealth);
   const newMp = mpUp(newCp);
@@ -43,28 +46,34 @@ const levelUpThatKnight = function(test){
 
 const canAttack = (obj) => ({
   attack:(target) => {
-    target(takesDamage)
-    return `The ${obj.type} attacks the ${target} with their sword.`
+    const takesPhysDamage = changeState("health")(obj.cp)(sub);
+    target(takesPhysDamage);
+    // return `The ${obj.type} attacks the ${target().type} with their wand.`;
+    return target;
   }
 });
 
 const canSpecialAttack = (obj) => ({
   sAttack:(target) => {
-    return `The ${obj.type} attacks the ${target} with magic.`
+    const takesMagicDamage = changeState("health")(obj.mp)(sub);
+    target(takesMagicDamage);
+    return `The ${obj.type} attacks the ${target().type} with magic.`;
   }
 });
 
-const attackingCharacter = (obj) => {
-  let character = {
-    obj
-  }
+export const attackingCharacter = (obj) => {
   return {...obj, ...canAttack(obj), ...canSpecialAttack(obj) };
 };
-knight(attackingCharacter);
-console.log(knight());
-console.log(knight().attack("monster"));
-console.log(knight().sAttack("monster"));
 
+knight(attackingCharacter);
+// monster(attackingCharacter);
+// console.log(knight());
+// console.log(monster());
+// console.log(knight().attack(monster));
+// console.log(knight().sAttack(monster));
+// console.log(monster().sAttack(knight));
+// console.log(monster());
+// console.log(knight());
 /*
 function thing(...stuff) {
   stuff.forEach((a) => {

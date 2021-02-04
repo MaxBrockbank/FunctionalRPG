@@ -4,7 +4,7 @@ To Do: Make monster/enemy, create combat system (option: click makes a compariso
 
 ✅ Create a character creating function factory. //changeState fxn
 ✅ Create storeState function.
-Create 2+ character types via composition.
+✅ Create 2+ character types via composition.
 
 Attributes/Stats:
 Level / Health / Combat Power (CP) / Magic Power (MP)
